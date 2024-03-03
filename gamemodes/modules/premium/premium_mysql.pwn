@@ -111,6 +111,23 @@ MruMySQL_SaveMc(playerid)
     }
 }
 
+MruMySQL_GetMC(playerid)
+{
+	new mc;
+	new qr[256];
+	format(qr, sizeof(qr), "SELECT `p_MC` FROM `mru_premium` WHERE `p_charUID`='%d'", PlayerInfo[playerid][pUID]);
+	mysql_query(qr);
+	mysql_store_result();
+	{
+		mysql_fetch_row_format(qr, "|");
+        mysql_free_result();
+        sscanf(qr, "p<|>d", mc);
+	}
+
+	PremiumInfo[playerid][pMC] = mc;
+	return mc;
+}
+
 MruMySQL_LoadPlayerPremiumSkins(playerid)
 {
 	new qr[256];

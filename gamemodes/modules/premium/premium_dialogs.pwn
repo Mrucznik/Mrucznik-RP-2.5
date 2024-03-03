@@ -78,7 +78,8 @@ premium_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		if(response)
 		{
-			if((PremiumInfo[playerid][pKP] && PremiumInfo[playerid][pMC] >= PRZEDLUZ_KP_CENA) || PremiumInfo[playerid][pMC] >= MIESIAC_KP_CENA)
+			new mc = MruMySQL_GetMC(playerid);
+			if((PremiumInfo[playerid][pKP] && mc >= PRZEDLUZ_KP_CENA) || mc >= MIESIAC_KP_CENA)
 			{
 				if(IsPlayerPremium(playerid)) 
 				{
@@ -245,7 +246,7 @@ DialogMenuDotacje(playerid)
 		format(kpinfo, sizeof(kpinfo), ""#PREMIUM_EMBED2"(Wygasa: %02d.%02d.%d)", date[2], date[1], date[0]);
 	}
 
-
+	new mc = MruMySQL_GetMC(playerid);
 	format(string, sizeof(string), ""#HQ_COLOR_TEKST"Iloœæ MruCoins: \t\t"#PREMIUM_EMBED2"%d MC\n" \
 		"    "HQ_COLOR_TEKST2"Kup MruCoins\n"\
 		""#HQ_COLOR_TEKST"Konto Premium %s\n"\
@@ -261,7 +262,7 @@ DialogMenuDotacje(playerid)
 		"    "HQ_COLOR_TEKST2"Obiekt do noszenia\n",
 		//"Rynek Mrucznik Coins'ów\n"
 		//"Wspomó¿ nasz serwer i otrzymaj Mrucznik Coins'y!", 
-	PremiumInfo[playerid][pMC], kpinfo, ((IsPlayerPremium(playerid)) ? ("Przed³u¿") : ("Kup")), PlayerInfo[playerid][pPnumber], PlayerInfo[playerid][pCarSlots]);
+	mc, kpinfo, ((IsPlayerPremium(playerid)) ? ("Przed³u¿") : ("Kup")), PlayerInfo[playerid][pPnumber], PlayerInfo[playerid][pCarSlots]);
 	ShowPlayerDialogEx(playerid, PREMIUM_DIALOG(MENU), DIALOG_STYLE_LIST, "Premium", string, "Wybierz", "WyjdŸ");
 	return 1;
 }

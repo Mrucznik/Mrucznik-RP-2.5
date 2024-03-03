@@ -42,7 +42,8 @@ command_addmc_Impl(playerid, giveplayerid, value)
 		TakeMCFromBudget(value);
 	}
 
-	PremiumInfo[giveplayerid][pMC] += value;
+	new mc = MruMySQL_GetMC(giveplayerid);
+	PremiumInfo[giveplayerid][pMC] = mc + value;
 	MruMySQL_SaveMc(giveplayerid);
 
 	Log(premiumLog, INFO, "Admin %s doda³ %s %dMC, poprzedni stan: %dMC", 

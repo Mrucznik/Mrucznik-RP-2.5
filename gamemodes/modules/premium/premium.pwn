@@ -102,7 +102,8 @@ premium_loadForPlayer(playerid)
 
 premium_printMcBalance(playerid)
 {
-	return _MruGracz(playerid, sprintf("Aktualnie na Twoim koncie znajduje siê %d MruCoins.", PremiumInfo[playerid][pMC]));
+	new mc = MruMySQL_GetMC(playerid);
+	return _MruGracz(playerid, sprintf("Aktualnie na Twoim koncie znajduje siê %d MruCoins.", mc));
 }
 
 //---< Private >---
@@ -196,7 +197,7 @@ KupPojazdPremium(playerid, id)
 		DialogPojazdyPremium(playerid);
 		return 1;
 	}
-	if(PremiumInfo[playerid][pMC] < PojazdyPremium[id][Cena])
+	if(MruMySQL_GetMC(playerid) < PojazdyPremium[id][Cena])
 	{
 		sendErrorMessage(playerid, "Nie staæ Ciê na ten pojazd");
 		return DialogPojazdyPremium(playerid);
@@ -211,7 +212,7 @@ KupPojazdPremium(playerid, id)
 
 KupPrzedmiotPremium(playerid, id)
 {
-	if(PremiumInfo[playerid][pMC] < PrzedmiotyPremium[id][Cena])
+	if(MruMySQL_GetMC(playerid) < PrzedmiotyPremium[id][Cena])
 	{
 		sendErrorMessage(playerid, "Nie staæ Ciê na ten przedmiot!");
 		return DialogPrzedmioty(playerid);
@@ -243,7 +244,7 @@ KupSlotPojazdu(playerid)
 {
 	if(!IsPlayerConnected(playerid)) return 1;
 
-	if(PremiumInfo[playerid][pMC] < CAR_SLOT_CENA)
+	if(MruMySQL_GetMC(playerid) < CAR_SLOT_CENA)
 	{
 		sendErrorMessage(playerid, "Nie staæ Ciê na zakup dodatkowego slotu.");
 		return DialogSlotyPojazdu(playerid);
@@ -271,7 +272,7 @@ KupZmianeNicku(playerid)
 {
 	if(!IsPlayerConnected(playerid)) return 1;
 
-	if(PremiumInfo[playerid][pMC] < ZMIANA_NICKU_CENA)
+	if(MruMySQL_GetMC(playerid) < ZMIANA_NICKU_CENA)
 	{
 		sendErrorMessage(playerid, "Nie staæ Ciê na zakup dodatkowej zmiany nicku");
 		return DialogZmianyNicku(playerid);
@@ -291,7 +292,7 @@ KupZmianeNicku(playerid)
 
 KupSkinPremium(playerid, id)
 {
-	if(PremiumInfo[playerid][pMC] < SkinyPremium[id][Cena])
+	if(MruMySQL_GetMC(playerid) < SkinyPremium[id][Cena])
 	{
 		sendErrorMessage(playerid, "Nie staæ Ciê na ten skin");
 		return DialogSkiny(playerid);
@@ -338,7 +339,7 @@ KupNumerTelefonu(playerid, string:_numer[])
 		else
 			cena = TELEFON_CENA_5;
 
-		if(PremiumInfo[playerid][pMC] < cena)
+		if(MruMySQL_GetMC(playerid) < cena)
 		{
 			sendErrorMessage(playerid, "Nie staæ Ciê na ten numer telefonu");
 			return DialogTelefon(playerid);

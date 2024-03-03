@@ -4737,6 +4737,7 @@ ShowStats(playerid,targetid)
 		new coordsstring[256];
 		//new busiMem = PlayerInfo[targetid][pBusinessMember];
 		//new busiOwn = PlayerInfo[targetid][pBusinessOwner]; 
+		new mc = MruMySQL_GetMC(targetid);
 		SendClientMessage(playerid, COLOR_GREEN,"_______________________________________");
 		format(coordsstring, sizeof(coordsstring),"*** %s ({8FCB04}UID: %d{FFFFFF}) ***",name, PlayerInfo[targetid][pUID]);
 		SendClientMessage(playerid, COLOR_WHITE,coordsstring);
@@ -4752,7 +4753,7 @@ ShowStats(playerid,targetid)
 		SendClientMessage(playerid, COLOR_GRAD5,coordsstring);
 		format(coordsstring, sizeof(coordsstring), "Uniform[%d] JobSkin[%d] Apteczki[%d] Zestawy [%d]", PlayerInfo[targetid][pUniform], PlayerInfo[targetid][pJobSkin], PlayerInfo[targetid][pHealthPacks],PlayerInfo[targetid][pFixKit]);
 		SendClientMessage(playerid, COLOR_GRAD5, coordsstring); 
-		format(coordsstring, sizeof(coordsstring), "Dom [%d] Klucz Wozu [%d] MruCoins [%d]", housekey,PlayerInfo[targetid][pKluczeAuta], PremiumInfo[targetid][pMC]);
+		format(coordsstring, sizeof(coordsstring), "Dom [%d] Klucz Wozu [%d] MruCoins [%d]", housekey,PlayerInfo[targetid][pKluczeAuta], mc);
 		SendClientMessage(playerid, COLOR_GRAD6,coordsstring); 
 		SendClientMessage(playerid, COLOR_GREEN,"_______________________________________");
 	}

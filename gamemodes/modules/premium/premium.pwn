@@ -157,7 +157,8 @@ DajMC(playerid, mc)
 		return 0;
 	}
 
-	PremiumInfo[playerid][pMC] += mc;
+	new currentMC = MruMySQL_GetMC(playerid);
+	PremiumInfo[playerid][pMC] = currentMC + mc;
 	MruMySQL_SaveMc(playerid);
 	return 1;
 }
@@ -171,7 +172,8 @@ ZabierzMC(playerid, mc)
 		return 0;
 	}
 
-	PremiumInfo[playerid][pMC] -= mc;
+	new currentMC = MruMySQL_GetMC(playerid);
+	PremiumInfo[playerid][pMC] = currentMC - mc;
 	MruMySQL_SaveMc(playerid);
 	return 1;
 }

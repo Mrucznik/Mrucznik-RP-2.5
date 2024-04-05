@@ -11765,6 +11765,33 @@ ShowPersonalization(playerid, value)
 	}
 	if(value == 4)
 	{
+		if(PlayerPersonalization[playerid][PERS_EFFECTS] == 0)
+		{
+			strdel(persona_A, 0, 64); 
+			strins(persona_A, "Efekty (choroby/pozytywne)\t{80FF00}ON\n", 0);
+		}
+		else if(PlayerPersonalization[playerid][PERS_EFFECTS] == 1)
+		{
+			strdel(persona_A, 0, 64);
+			strins(persona_A, "Efekty (choroby/pozytywne)\t{FF6A6A}OFF\n", 0);
+		}
+		else 
+		{
+			new cooldown;
+			if(PlayerPersonalization[playerid][PERS_EFFECTS] > 0) {
+				cooldown = PlayerPersonalization[playerid][PERS_EFFECTS] - 1;
+			} else {
+				cooldown = -PlayerPersonalization[playerid][PERS_EFFECTS];
+			}
+
+			strdel(persona_A, 0, 64);
+			format(persona_A, sizeof(persona_A), "Efekty (choroby/pozytywne)\t{FF6A6A}NIEDOSTÊPNE - COOLDOWN %dh", cooldown);
+		}
+		format(string, sizeof(string), "%s", persona_A);
+		ShowPlayerDialogEx(playerid, D_PERS_EFFECTS, DIALOG_STYLE_TABLIST, "Mrucznik Role Play", string, "Akceptuj", "Wyjdz");
+	}
+	if(value == 5)
+	{
 		if(PlayerPersonalization[playerid][PERS_KB] == 0)
 		{
 			strdel(persona_A, 0, 64); 

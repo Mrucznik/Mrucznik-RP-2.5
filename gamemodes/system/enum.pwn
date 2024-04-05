@@ -1344,7 +1344,8 @@ enum pPInfo
 	PERS_KARYTXD,//Wyœwietlanie kar w TXD
 	PERS_NEWNICK,//Nowe nicki w 3dtextach
 	PERS_NEWBIE,//Wyœwietlanie chatu newbie
-	PERS_GUNSCROLL//Wyœwietlanie GUI z broñ
+	PERS_GUNSCROLL,//Wyœwietlanie GUI z broñ
+	PERS_EFFECTS//Efekty
 };
 new PlayerPersonalization[MAX_PLAYERS][pPInfo];
 enum pHaul

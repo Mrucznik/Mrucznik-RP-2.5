@@ -527,7 +527,7 @@ MruMySQL_SaveAccount(playerid, bool:forcegmx = false, bool:forcequit = false)
 		`newbie`, \
 		`BronieScroll`) \
 	VALUES ( \
-		%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d \
+		%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d \
 	) \
 	ON DUPLICATE KEY UPDATE \
 		`KontoBankowe` = %d, \
@@ -542,7 +542,8 @@ MruMySQL_SaveAccount(playerid, bool:forcegmx = false, bool:forcequit = false)
 		`KaryTXD` = %d, \
 		`NewNick` = %d, \
 		`newbie` = %d,	\
-		`BronieScroll` = %d",
+		`BronieScroll` = %d, \
+		`Efekty` = %d",
 	PlayerInfo[playerid][pUID],
 	PlayerPersonalization[playerid][PERS_KB],
 	PlayerPersonalization[playerid][PERS_AD],
@@ -557,6 +558,7 @@ MruMySQL_SaveAccount(playerid, bool:forcegmx = false, bool:forcequit = false)
 	PlayerPersonalization[playerid][PERS_NEWNICK],
 	PlayerPersonalization[playerid][PERS_NEWBIE],
 	PlayerPersonalization[playerid][PERS_GUNSCROLL],
+	PlayerPersonalization[playerid][PERS_EFFECTS],
 	// to update
 	PlayerPersonalization[playerid][PERS_KB],
 	PlayerPersonalization[playerid][PERS_AD],
@@ -570,7 +572,8 @@ MruMySQL_SaveAccount(playerid, bool:forcegmx = false, bool:forcequit = false)
 	PlayerPersonalization[playerid][PERS_KARYTXD],
 	PlayerPersonalization[playerid][PERS_NEWNICK],
 	PlayerPersonalization[playerid][PERS_NEWBIE],
-	PlayerPersonalization[playerid][PERS_GUNSCROLL]); 
+	PlayerPersonalization[playerid][PERS_GUNSCROLL],
+	PlayerPersonalization[playerid][PERS_EFFECTS]); 
 
 	//przywr�� maskowanie nicku (pNick)
 	if(GetPVarString(playerid, "maska_nick", maska_nick, 24))

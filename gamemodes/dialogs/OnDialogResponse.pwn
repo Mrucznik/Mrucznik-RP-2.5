@@ -15968,37 +15968,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 		else if(response)
 		{
-			switch(listitem)
+			if(listitem == 1 && PlayerInfo[playerid][pAdmin] == 0 && PlayerInfo[playerid][pNewAP] == 0)
 			{
-				case 0:
-				{
-					ShowPersonalization(playerid, 1); 
-				}
-				case 1:
-				{
-					ShowPersonalization(playerid, 2); 
-				}
-				case 2:
-				{
-					if(PlayerInfo[playerid][pAdmin] == 0 && PlayerInfo[playerid][pNewAP] == 0)
-					{
-						sendTipMessage(playerid, "Nie jesteœ administratorem"); 
-						return 1;
-					}
-					ShowPersonalization(playerid, 3); 
-				}
-				case 3:
-				{
-					ShowPersonalization(playerid, 4); 
-				}
+				sendTipMessage(playerid, "Nie jesteœ administratorem"); 
+				return 1;
 			}
+			ShowPersonalization(playerid, listitem+1); 
 		}
 	}
 	else if(dialogid == D_PERS_VEH)
 	{
 		if(!response)
 		{
-			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nInne", "Akceptuj", "Wyjdz");
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 			return 1;
 		}
 		if(response)
@@ -16229,7 +16211,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		if(!response)
 		{
-			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nInne", "Akceptuj", "Wyjdz");
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 			return 1;	
 		}
 		if(response)
@@ -16289,13 +16271,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 				}
 			}
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 		}
 	}
 	else if(dialogid == D_PERS_ADMIN)
 	{
 		if(!response)
 		{
-			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nInne", "Akceptuj", "Wyjdz");
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 			return 1;
 		}
 		if(response)
@@ -16329,13 +16312,42 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 				}
 			}
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
+		}
+	}
+	else if(dialogid == D_PERS_EFFECTS)
+	{
+		if(!response)
+		{
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
+			return 1;
+		}
+		if(response)
+		{
+			switch(listitem)
+			{
+				case 0: //efekty
+				{
+					if(PlayerPersonalization[playerid][PERS_EFFECTS] == 0)
+					{
+						PlayerPersonalization[playerid][PERS_EFFECTS] = 6; 
+						sendTipMessage(playerid, "Wy³¹czy³eœ negatywne oraz pozytywne efekty (narkotyki, choroby itp.)"); 
+					}
+					else if(PlayerPersonalization[playerid][PERS_EFFECTS] == 1)
+					{
+						PlayerPersonalization[playerid][PEPERS_EFFECTSRS_KB] = -5; 
+						sendTipMessage(playerid, "W³¹czy³eœ negatywne oraz pozytywne efekty (narkotyki, choroby itp.)"); 
+					}
+				}
+			}
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 		}
 	}
 	else if(dialogid == D_PERS_INNE)
 	{
 		if(!response)
 		{
-			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nInne", "Akceptuj", "Wyjdz");
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 			return 1;
 		}
 		if(response)
@@ -16407,8 +16419,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						PlayerPersonalization[playerid][PERS_GUNSCROLL] = 0;
 					}
 				}
-
 			}
+			ShowPlayerDialogEx(playerid, D_PERSONALIZE, DIALOG_STYLE_LIST, "Mrucznik Role Play", "Pojazd\nChat\nAdmin\nEfekty\nInne", "Akceptuj", "Wyjdz");
 		}
 	}
 	else if(dialogid == D_VINYL)
